@@ -1,23 +1,26 @@
 <script setup>
-defineProps({
-  totalPrice: Number
-})
-const emit = defineEmits(['openDrawer'])
+const { totalPrice, isDrawerOpen } = useBasket()
 </script>
 
 <template>
   <header class="flex justify-between border-b border-slate-300 px-8 py-8">
-    <div class="flex items-center">
-      <img class="w-10 mr-5" src="/logo.png" alt="Logo" />
-      <div>
-        <h2 class="text-xl font-bold uppercase">Vue Sneakers</h2>
-        <p class="text-slate-400">Магазин лучших кросовок</p>
+    <NuxtLink to="/">
+      <div class="flex items-center">
+        <img class="w-10 mr-5" src="/logo.png" alt="Logo" />
+        <div>
+          <h2 class="text-xl font-bold uppercase">
+            Vue Sneakers
+          </h2>
+          <p class="text-slate-400">
+            Магазин лучших кросовок
+          </p>
+        </div>
       </div>
-    </div>
+    </NuxtLink>
     <ul class="flex items-center gap-10">
       <li
-        @click="() => emit('openDrawer')"
         class="flex items-center cursor-pointer gap-2 text-slate-600 hover:text-black"
+        @click="isDrawerOpen = true"
       >
         <img src="/cart.svg" alt="Cart" />
         <b>{{ totalPrice }} руб.</b>
@@ -26,7 +29,7 @@ const emit = defineEmits(['openDrawer'])
         class="flex items-center cursor-pointer gap-2 text-slate-400 hover:text-black"
       >
         <img src="/heart.svg" alt="Cart" />
-        <span>Bookmarks</span>
+        <span><NuxtLink to="/favorites">Bookmarks</NuxtLink></span>
       </li>
       <li
         class="flex items-center cursor-pointer gap-2 text-slate-400 hover:text-black"

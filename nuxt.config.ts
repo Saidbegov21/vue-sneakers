@@ -2,7 +2,8 @@
 export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
-    '@bg-dev/nuxt-naiveui'
+    '@bg-dev/nuxt-naiveui',
+    '@formkit/auto-animate/nuxt'
   ],
   compatibilityDate: '2024-08-19',
   devtools: {

@@ -1,16 +1,16 @@
 <script setup>
-const { basketItems, removeFromBasket } = inject('drawerActions')
+const { basketItems, removeFromBasket } = useBasket()
 </script>
 
 <template>
-  <div class="flex flex-col gap-5">
+  <div v-auto-animate class="flex flex-col gap-5">
     <BasketCart
       v-for="item in basketItems"
+      :id="item.id"
       :key="item.id"
       :title="item.title"
       :img-url="item.imageUrl"
       :price="item.price"
-      :id="item.id"
       @on-click-remove="() => removeFromBasket(item)"
     />
   </div>

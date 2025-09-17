@@ -29,7 +29,7 @@ export default antfu({
       }
     ],
     'style/comma-dangle': 'off',
-    curly: ['error', 'all'],
+    'curly': ['error', 'all'],
     'node/prefer-global/process': ['error', 'always'],
 
     // Добавьте эти правила для Vue
