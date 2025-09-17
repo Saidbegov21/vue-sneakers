@@ -1,5 +1,4 @@
 <script setup>
-const emit = defineEmits(['onClickRemove'])
 defineProps({
   id: Number,
   title: String,
@@ -7,6 +6,7 @@ defineProps({
   imgUrl: String,
   onClickAdd: Function
 })
+const emit = defineEmits(['onClickRemove'])
 </script>
 
 <template>
@@ -17,10 +17,10 @@ defineProps({
       <div class="flex justify-between">
         <b class="flex-1">{{ price }} руб.</b>
         <img
-          @click="emit('onClickRemove')"
           class="opacity-50 hover:opacity-100 cursor-pointer transition"
           src="/close.svg"
           alt="удалить"
+          @click="emit('onClickRemove')"
         />
       </div>
     </div>
