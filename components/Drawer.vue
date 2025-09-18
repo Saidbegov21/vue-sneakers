@@ -1,20 +1,21 @@
 <script setup>
-defineProps({
-  totalPrice: Number,
-  vatPrice: Number,
-  createOrder: Boolean,
-  buttonDisabled: Boolean
-})
-
-const { totalPrice, createOrder } = useBasket()
+const { totalPrice, createOrder, buttonDisabled, vatPrice, orderId }
+  = useBasket()
 </script>
 
 <template>
   <div class="fixed top-0 left-0 h-full w-full bg-black z-10 opacity-50" />
   <div class="bg-white w-96 h-full fixed right-0 top-0 z-20 p-10">
     <DrawerHead />
-    <div v-if="!totalPrice" class="flex h-full items-center">
+    <div v-if="!totalPrice || orderId" class="flex h-full items-center">
       <BasketBlock
+        v-if="orderId"
+        title="Заказ оформлен!"
+        :descriptio="`Ваш заказ #${orderId} скоро будет передан курьерско доставке`"
+        img-url="/order-success-icon.png"
+      />
+      <BasketBlock
+        v-if="!totalPrice && !orderId"
         title="Корзина пустая"
         descriptio="Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."
         img-url="/package-icon.png"
