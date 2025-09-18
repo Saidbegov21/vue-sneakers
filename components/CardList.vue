@@ -1,6 +1,7 @@
 <script setup>
 defineProps({
-  items: Array
+  items: Array,
+  isFavorites: Boolean
 })
 
 const emit = defineEmits(['addToFavorite', 'addToBasket'])
@@ -15,9 +16,11 @@ const emit = defineEmits(['addToFavorite', 'addToBasket'])
       :price="item.price"
       :title="item.title"
       :img-url="item.imageUrl"
-      :on-click-favorite="() => emit('addToFavorite', item)"
+      :on-click-favorite="
+        isFavorites ? null : () => emit('addToFavorite', item)
+      "
       :is-favorite="item.isFavorite"
-      :on-click-add="() => emit('addToBasket', item)"
+      :on-click-add="isFavorites ? null : () => emit('addToBasket', item)"
       :is-added="item.isAdded"
     />
   </div>

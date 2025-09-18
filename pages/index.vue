@@ -3,6 +3,7 @@ import axios from 'axios'
 
 const items = ref([])
 const { basketItems, onClickAddBasket } = useBasket()
+const { addToFavorite } = useFavorite()
 const filters = reactive({
   sortBy: 'title',
   searchQuery: ''
@@ -16,37 +17,13 @@ function onChangeSearchInput(e) {
   filters.searchQuery = e.target.value
 }
 
-async function addToFavorite(item) {
-  try {
-    if (!item.isFavorite) {
-      const obj = { parentId: item.id }
-      item.isFavorite = true
-      const { data } = await axios.post(
-        'https://54338fc905e86e9f.mokky.dev/favorits',
-        obj
-      )
-      item.favoriteId = data.id
-    }
-    else {
-      item.isFavorite = false
-      await axios.delete(
-        `https://54338fc905e86e9f.mokky.dev/favorits/${item.favoriteId}`
-      )
-      item.favoriteId = null
-    }
-  }
-  catch (error) {
-    console.error(error)
-  }
-}
-
 async function fetchFavorites() {
   try {
     const { data: favorits } = await axios.get(
       'https://54338fc905e86e9f.mokky.dev/favorits'
     )
     items.value = items.value.map((item) => {
-      const favorite = favorits.find(f => f.id === item.id)
+      const favorite = favorits.find(favorite => favorite.item_id === item.id)
       if (!favorite) {
         return item
       }
@@ -141,6 +118,7 @@ watch(filters, fetchItems)
   </div>
   <div>
     <CardList
+      v-auto-animate
       :items="items"
       @add-to-favorite="addToFavorite"
       @add-to-basket="onClickAddBasket"
