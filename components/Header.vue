@@ -1,23 +1,24 @@
 <script setup>
 const { totalPrice, isDrawerOpen } = useBasket()
+const { isMobileNaw } = useNaw()
 </script>
 
 <template>
-  <header class="flex justify-between border-b border-slate-300 px-8 py-8">
+  <div class="flex justify-between border-b border-slate-300 px-4 py-8">
     <NuxtLink to="/">
       <div class="flex items-center">
-        <img class="w-10 mr-5" src="/logo.png" alt="Logo" />
+        <img class="w-10 mr-3 md:mr-5" src="/logo.png" alt="Logo" />
         <div>
-          <h2 class="text-xl font-bold uppercase">
+          <h2 class="text-sm font-bold uppercase">
             Vue Sneakers
           </h2>
-          <p class="text-slate-400">
+          <p class="text-sm text-slate-400">
             Магазин лучших кросовок
           </p>
         </div>
       </div>
     </NuxtLink>
-    <ul class="flex items-center gap-10">
+    <ul class="hidden md:flex items-center gap-10">
       <li
         class="flex items-center cursor-pointer gap-2 text-slate-600 hover:text-black"
         @click="isDrawerOpen = true"
@@ -38,5 +39,8 @@ const { totalPrice, isDrawerOpen } = useBasket()
         <span>Profile</span>
       </li>
     </ul>
-  </header>
+    <button class="md:hidden" @click="isMobileNaw = true">
+      <img class="w-[40px]" src="/naw.png" alt="">
+    </button>
+  </div>
 </template>

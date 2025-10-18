@@ -1,5 +1,4 @@
 <script setup>
-// Создаем состояние корзины
 const basketItems = useState('basket-items', () => [])
 
 watch(

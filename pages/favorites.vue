@@ -20,7 +20,7 @@ onMounted(async () => {
 
 <template>
   <div>
-    <h2 class="text-3xl font-bold mb-8">
+    <h2 class="text-sm md:text-lg lg:text-2xl font-bold mb-8">
       Мои закладки
     </h2>
   </div>
